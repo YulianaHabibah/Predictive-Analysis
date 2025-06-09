@@ -2,6 +2,7 @@
 
 #### Disusun oleh : 
 Nama : Yuliana Habibah
+
 ID   : MC015D5X1091
 
 ## Domain Proyek
@@ -25,7 +26,10 @@ Harga sewa suatu hunian umumnya ditentukan berdasarkan nilai-nilai tersebut. Nam
 + Efisiensi pasar akan meningkat karena harga yang ditawarkan cenderung mencerminkan nilai aktual properti sesuai permintaan dan kondisi pasar.
 
 
-Referensi : [Analisis Prediksi Harga Rumah Sesuai Spesifikasi Menggunakan Multiple Linear Regression](https://ejournal.upnvj.ac.id/index.php/informatik/article/download/3635/1498)
+Referensi : 
+
+[Analisis Prediksi Harga Rumah Sesuai Spesifikasi Menggunakan Multiple Linear Regression](https://ejournal.upnvj.ac.id/index.php/informatik/article/download/3635/1498)
+
 [Predicting property prices with machine learning algorithms](https://www.tandfonline.com/doi/full/10.1080/09599916.2020.1832558)
 
 
@@ -82,20 +86,20 @@ Univariate Analysis merupakan proses analisis data dengan memeriksa masing-masin
 #### Analisis jumlah nilai unique pada setiap fitur kategorik
 
 Fitur kategorikal seperti *City*, *Furnishing Status*, dan *Tenant Preferred* menunjukkan distribusi sampel yang relatif seimbang di antara masing-masing kategori, sehingga tidak menimbulkan dominasi kelas tertentu dalam data.
+![Cuplikan layar 2025-06-09 071445](https://github.com/user-attachments/assets/f89300e9-6172-4daf-9af6-6394495e5955)
 
-![alt text](<Cuplikan layar 2025-06-09 071445.png>)
+![Cuplikan layar 2025-06-09 071846](https://github.com/user-attachments/assets/12123993-1dcf-4b56-bce3-6aeb29621b2f)
 
-![alt text](<Cuplikan layar 2025-06-09 071846.png>)
-
-![alt text](<Cuplikan layar 2025-06-09 072016.png>)
+![Cuplikan layar 2025-06-09 072016](https://github.com/user-attachments/assets/a261e433-9566-4418-aa4d-6bf80fac09f7)
 
 
 #### Analisis sebaran pada setiap fitur numerik
 
-![alt text](<Cuplikan layar 2025-06-09 072644.png>)
+
+![Cuplikan layar 2025-06-09 072644](https://github.com/user-attachments/assets/86819057-49d1-4054-9864-a33ef8593a3c)
 
 
-+Berdasarkan grafik di atas, dapat disimpulkan bahwa sebagian besar rumah memiliki 1 hingga 3 BHK serta 1 hingga 3 kamar mandi. Selain itu, mayoritas rumah memiliki luas bangunan di bawah 2000 sqft. Rentang harga sewa yang tercatat dalam data sangat lebar, mulai dari 1200 hingga 3.500.000. Namun, rata-rata harga sewa hanya sebesar 35.003, yang menunjukkan adanya distribusi harga yang tidak merata. Kondisi distribusi seperti ini dapat memengaruhi kinerja model dalam melakukan prediksi secara akurat.
+Berdasarkan grafik di atas, dapat disimpulkan bahwa sebagian besar rumah memiliki 1 hingga 3 BHK serta 1 hingga 3 kamar mandi. Selain itu, mayoritas rumah memiliki luas bangunan di bawah 2000 sqft. Rentang harga sewa yang tercatat dalam data sangat lebar, mulai dari 1200 hingga 3.500.000. Namun, rata-rata harga sewa hanya sebesar 35.003, yang menunjukkan adanya distribusi harga yang tidak merata. Kondisi distribusi seperti ini dapat memengaruhi kinerja model dalam melakukan prediksi secara akurat.
 
 
 ### Multivariate Analysis
@@ -108,7 +112,8 @@ Multivariate Analysis menunjukkan hubungan antara dua atau lebih fitur dalam dat
 
 + Fitur *Size* dan *Rent* dianalisis lebih lanjut dengan membuat fitur turunan baru bernama *Price\_per\_sqft*, yang merepresentasikan harga sewa per satuan luas (sqft). Pembuatan fitur ini bertujuan untuk mempermudah deteksi outlier harga sewa berdasarkan luas bangunan, sehingga anomali harga per sqft yang tidak wajar dapat diidentifikasi dan ditangani dengan lebih efektif.
 
-  ![alt text](<Cuplikan layar 2025-06-09 073523.png>)
+ ![Cuplikan layar 2025-06-09 073523](https://github.com/user-attachments/assets/ea49266e-1ce3-46df-8ec1-631f97040aad)
+ 
 
 Dari hasil tersebut, ditemukan bahwa terdapat nilai ekstrem seperti harga sewa 571 per sqft yang terlalu rendah dan 1.400.000 per sqft yang sangat tinggi. Untuk menangani outlier tersebut, dilakukan penghapusan data berdasarkan rata-rata (*mean*) dan satu standar deviasi, yang dihitung secara spesifik untuk masing-masing kota. Pendekatan ini memungkinkan penyesuaian yang lebih kontekstual terhadap kondisi pasar lokal. Proses ini mengakibatkan pengurangan jumlah sampel sebanyak 497.
 
@@ -116,7 +121,8 @@ Dari hasil tersebut, ditemukan bahwa terdapat nilai ekstrem seperti harga sewa 5
 + Fitur *Bathroom* dan *BHK* dianalisis karena terdapat kasus yang tidak lazim, seperti rumah dengan 2 BHK memiliki 4 kamar mandi. Untuk menjaga konsistensi logis, ditetapkan batas bahwa jumlah kamar mandi tidak boleh melebihi jumlah BHK ditambah 2. Penerapan aturan ini menghasilkan penghapusan 3 sampel dari dataset.
   
 + Kolerasi antara semua fitur numerik
-![alt text](<Cuplikan layar 2025-06-09 073919.png>)  
+![Cuplikan layar 2025-06-09 073919](https://github.com/user-attachments/assets/7f5e26d4-0a75-431f-83eb-d0dc22a13a8f)
+
  Visualisasi korelasi antar fitur numerik menunjukkan bahwa fitur BHK, Size, dan Bathroom memiliki korelasi yang rendah terhadap variabel target Rent. Hal ini kemungkinan disebabkan oleh keterbatasan jumlah data dalam penelitian ini. Namun, ditemukan korelasi yang cukup kuat antara BHK dan Bathroom dengan Size, yang sejalan dengan hasil pembersihan data dan penghapusan outlier yang telah dilakukan sebelumnya.
 
 #### Analisis fitur kategorik
@@ -124,21 +130,24 @@ Dari hasil tersebut, ditemukan bahwa terdapat nilai ekstrem seperti harga sewa 5
 Analisis ini dilakukan untuk melihat kolerasi antara fitur kategorik dengan fitur target (Rent).
 
 + Fitur Area Type
- ![alt text](<Cuplikan layar 2025-06-09 074218.png>)
+![Cuplikan layar 2025-06-09 074218](https://github.com/user-attachments/assets/b53fa7a9-c114-44ea-83da-07f9734045c2)
+
   Fitur *Area Type* menunjukkan pengaruh yang minimal terhadap rata-rata harga sewa, sehingga kontribusinya terhadap prediksi harga sewa relatif kecil.
 
 
 + Fitur City
-  ![alt text](<Cuplikan layar 2025-06-09 074414.png>)
+ ![Cuplikan layar 2025-06-09 074414](https://github.com/user-attachments/assets/41e47765-dfe9-4cb3-9a36-7f76eb350ede)
+
  Fitur *City* memberikan pengaruh yang signifikan terhadap rata-rata harga sewa, terutama untuk properti yang terletak di Mumbai. Hal ini terlihat dari sebaran harga sewa tertinggi yang didominasi oleh rumah-rumah di Mumbai, yang merupakan kota dengan biaya hidup tertinggi di India, diikuti oleh Delhi.
 
 + Fitur Furnishing Status
- ![alt text](<Cuplikan layar 2025-06-09 074801.png>)
+ ![Cuplikan layar 2025-06-09 074801](https://github.com/user-attachments/assets/67dd5113-7310-4bda-b289-ccc9e4d21379)
   Fitur Furnishing Status berpengaruh signifikan terhadap rata-rata harga sewa, karena rumah dengan perabot lengkap biasanya dihargai lebih tinggi dibanding yang tanpa perabot.
 
 
 + Fitur Tenant Preferred
- ![alt text](<Cuplikan layar 2025-06-09 075044.png>)
+![Cuplikan layar 2025-06-09 075044](https://github.com/user-attachments/assets/afe354b1-9ab2-4520-941c-95f338e29ca3)
+
   Fitur Tenant Preferred cukup berpengaruh terhadap rata-rata harga sewa, terlihat dari grafik bahwa rumah yang direkomendasikan untuk keluarga memiliki harga sewa rata-rata lebih tinggi dibandingkan yang lain.
 
 ## Data preparation
@@ -182,13 +191,15 @@ Agar algoritma machine learning bekerja lebih efektif dan efisien, data perlu di
 
 + **Hyperparameter Tuning (Grid Search)**
   Hyperparameter tuning adalah proses mencari kombinasi parameter terbaik untuk membangun model yang optimal. Pada proyek ini, teknik yang digunakan adalah grid search. Berikut hasil Grid Search yang diperoleh.
- ![alt text](<Cuplikan layar 2025-06-09 082944.png>)
+
+![Cuplikan layar 2025-06-09 082944](https://github.com/user-attachments/assets/ec666f50-2469-42ef-90da-934d7e9e0c81)
 
 ## Evaluation
 
 Metrik evaluasi yang digunakan dalam proyek ini adalah akurasi dan mean squared error (MSE). Akurasi mengukur sejauh mana prediksi sesuai dengan nilai asli (y\_test), sedangkan MSE menghitung rata-rata kuadrat selisih antara nilai aktual dan prediksi untuk menilai besarnya error model. Berikut adalah rumus MSE:
 
-![alt text](<Cuplikan layar 2025-06-09 080254.png>)
+![Cuplikan layar 2025-06-09 080254](https://github.com/user-attachments/assets/2606a74f-1a1a-4569-b815-f38932ef38a5)
+
 
 Berikut hasil evaluasi pada proyek ini :
 
@@ -201,6 +212,7 @@ Berikut hasil evaluasi pada proyek ini :
 
 + Mean Squared Error (MSE)
  
-![alt text](<Cuplikan layar 2025-06-09 080617.png>)
+![Cuplikan layar 2025-06-09 080617](https://github.com/user-attachments/assets/ddb2acac-8285-419e-9b11-cf6ea67f56e9)
+
 Dari hasil evaluasi, terlihat bahwa model Random Forest menunjukkan performa terbaik dibandingkan algoritma lain yang digunakan dalam proyek ini. Model ini memiliki akurasi yang lebih tinggi, artinya prediksi yang dihasilkan lebih mendekati nilai sebenarnya (y\_test). Selain itu, tingkat error-nya—diukur menggunakan mean squared error (MSE)—juga lebih rendah, menandakan kesalahan prediksi lebih kecil dan model lebih andal. Dengan kata lain, Random Forest mampu menangkap pola data dengan lebih baik sehingga menghasilkan prediksi yang lebih akurat dan konsisten dibandingkan K-Nearest Neighbour dan AdaBoost pada dataset ini.
 
